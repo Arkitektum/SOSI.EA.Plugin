@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{034EABF5-A35B-4462-AE77-5D0787B27BAC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Arkitektum.Kartverket.SOSI.EA.Plugin</RootNamespace>
+    <AssemblyName>Arkitektum.Kartverket.SOSI.EA.Plugin</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.EA">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Sparx Systems\EA\Interop.EA.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ObjektKatalogGenerator.cs" />
+    <Compile Include="Services\SOSIKontrollGenerator.cs" />
+    <Compile Include="Services\WordSOSIRealiseringGenerator.cs" />
+    <Compile Include="SosiNavigator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SosiNavigator.Designer.cs">
+      <DependentUpon>SosiNavigator.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SosiNavigator.resx">
+      <DependentUpon>SosiNavigator.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="sosi_mdg.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="xsl\html.xsl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="19110\gco\basicTypes.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gco\gco.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gco\gcoBase.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gfc.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\applicationSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\citation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\constraints.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\content.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\dataQuality.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\distribution.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\extent.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\freeText.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\gmd.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\identification.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\maintenance.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\metadataApplication.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\metadataEntity.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\metadataExtension.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\portrayalCatalogue.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\referenceSystem.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmd\spatialRepresentation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmx\catalogues.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmx\codelistItem.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmx\crsItem.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmx\extendedTypes.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmx\gmx.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmx\gmxUsage.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\gmx\uomItem.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="19110\xlink.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="xmi_prodspek.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="xmi_fagområde.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Arkitektum.Kartverket.SOSI.Model\Arkitektum.Kartverket.SOSI.Model.csproj">
+      <Project>{4cfe4c91-8b4f-49e4-9e05-1f393f69261f}</Project>
+      <Name>Arkitektum.Kartverket.SOSI.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

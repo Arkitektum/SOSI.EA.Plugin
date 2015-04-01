@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<xmi:XMI xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:SOSI="http://www.sparxsystems.com/profiles/SOSI/1.0">
+	<xmi:Documentation exporter="Enterprise Architect" exporterVersion="6.5"/>
+	<uml:Model xmi:type="uml:Model" name="EA_Model" visibility="public">
+		<packagedElement xmi:type="uml:Package" xmi:id="EAPK_6F065E71_1036_4ae4_BA84_DB7D23804F69" name="Produktspesifikasjon" visibility="public">
+			<ownedComment xmi:type="uml:Comment" xmi:id="EAID_CAF8ABCB_0CBC_48e1_9A3E_576CDFE9C096" body="Legg inn modell elementene her. Evt del opp med Leaf pakker.&#xA;&#xA;Bruk SOSI &quot;Toolbox&quot; for å legge inn elementer med tilhørende tagged values og stereotyper.&#xA;&#xA;For å generere GML skjema av en produktspesifikasjon så kan en velge &quot;applicationSchema&quot; pakken og velge &quot;Extensions -&amp;gt; ShapeChange -&amp;gt; Transform...&#xA;&#xA;For å generere SOSI formatet av en produktspesifikasjon så kan en velge &quot;applicationSchema&quot; pakken og velge &quot;Extensions -&amp;gt; SOSI format realisering -&amp;gt; Lag SOSI format realisering eller Lag defenisjonsfiler for SOSI kontroll &#xA;&#xA;Se veiledning &lt;a href=&quot;$inet://http://www.kartverket.no/Standarder/SOSI/Retningslinjer-og-veiledere-SOSI/&quot;&gt;&lt;font color=&quot;#0000ff&quot;&gt;&lt;u&gt;http://www.kartverket.no/Standarder/SOSI/Retningslinjer-og-veiledere-SOSI/&lt;/u&gt;&lt;/font&gt;&lt;/a&gt; "/>
+		</packagedElement>
+		<SOSI:applicationSchema base_Package="EAPK_6F065E71_1036_4ae4_BA84_DB7D23804F69" version="1.0" xsdEncodingRule="sosi" xmlns="app" SOSI_spesifikasjonstype="produktspesifikasjon" xsdDocument="filnavn.xsd" targetNamespace="http://skjema.geonorge.no/legg_inn_riktig_url" SOSI_produktgruppe="produktspes"/>
+	</uml:Model>
+	<xmi:Extension extender="Enterprise Architect" extenderID="6.5">
+		<elements>
+			<element xmi:idref="EAPK_6F065E71_1036_4ae4_BA84_DB7D23804F69" xmi:type="uml:Package" name="Produktspesifikasjon" scope="public">
+				<model package2="EAID_6F065E71_1036_4ae4_BA84_DB7D23804F69" package="EAPK_6F29AA18_AA62_43a7_BE7D_624DCCCB8475" tpos="0" ea_localid="1151491814" ea_eleType="package"/>
+				<properties isSpecification="false" sType="Package" nType="0" scope="public" stereotype="applicationSchema"/>
+				<project author="tor" version="1.0" phase="1.0" created="2013-04-02 13:53:24" modified="2013-04-02 13:53:24" complexity="1" status="Proposed"/>
+				<code gentype="Java"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<modelDocument/>
+				<tags>
+					<tag xmi:id="EAID_DEC125F0_E05B_c4e0_AA08_BB8D5C99A4B5" name="SOSI_kortnavn" value="#NOTES#Description: Brukes til filnavn for def filer&#xA;" modelElement="EAID_6F065E71_1036_4ae4_BA84_DB7D23804F69"/>
+					<tag xmi:id="EAID_8B13C732_819D_1781_9D67_5B3F79CACBFE" name="SOSI_langnavn" modelElement="EAID_6F065E71_1036_4ae4_BA84_DB7D23804F69"/>
+					<tag xmi:id="EAID_E81DA28B_9A76_fe9a_B767_D319E9F15583" name="SOSI_organisasjon" value="#NOTES#Description: Brukes i objektkatalog som ansvarlig organisasjon&#xA;" modelElement="EAID_6F065E71_1036_4ae4_BA84_DB7D23804F69"/>
+					<tag xmi:id="EAID_D50E40B9_3604_0e36_9928_C8B4239182AE" name="SOSI_produktgruppe" value="produktspes#NOTES#Values: sosi,produktspes,fagområde,fkb,kartdata,arealis,arealplan,vegdata&#xA;Default: produktspes&#xA;Description: Brukes til katalogstruktur for def filer&#xA;" modelElement="EAID_6F065E71_1036_4ae4_BA84_DB7D23804F69"/>
+					<tag xmi:id="EAID_B66099C1_A18C_dba1_85C2_478C1B77837E" name="SOSI_produsent" value="#NOTES#Description: brukes i objektkatalog som kontaktperson&#xA;" modelElement="EAID_6F065E71_1036_4ae4_BA84_DB7D23804F69"/>
+					<tag xmi:id="EAID_A37A7EEB_7B16_ae7b_9AD1_EB6CFBAA0AB3" name="SOSI_spesifikasjonstype" value="produktspesifikasjon#NOTES#Values: produktspesifikasjon,fagområde&#xA;Default: produktspesifikasjon&#xA;Description: Brukes til å formatere Word tabeller i Syntaks rapport. Standard kolonne er ikke med når det er en produktspesifikasjon. Ved fagområde så blir SOSI_Objekt lagt til INKLUDER på alle objektdefenisjoner&#xA;" modelElement="EAID_6F065E71_1036_4ae4_BA84_DB7D23804F69"/>
+					<tag xmi:id="EAID_83FDE7A4_80AF_ee80_A49A_2025770177E5" name="SOSI_versjon" value="#NOTES#Description: Brukes som filendelse i sosi def filer&#xA;" modelElement="EAID_6F065E71_1036_4ae4_BA84_DB7D23804F69"/>
+					<tag xmi:id="EAID_393CD814_819F_cc81_B620_F5A27D540FEC" name="targetNamespace" value="http://skjema.geonorge.no/legg_inn_riktig_url" modelElement="EAID_6F065E71_1036_4ae4_BA84_DB7D23804F69"/>
+					<tag xmi:id="EAID_6F40CEE6_1D91_d11d_B8FA_818839718F6F" name="version" value="1.0" modelElement="EAID_6F065E71_1036_4ae4_BA84_DB7D23804F69"/>
+					<tag xmi:id="EAID_08B91BD2_C3BD_ffc3_8505_0F0531386179" name="xmlns" value="app#NOTES#Description: Namespace prefix (or) the abbreviated short form  &#xA;" modelElement="EAID_6F065E71_1036_4ae4_BA84_DB7D23804F69"/>
+					<tag xmi:id="EAID_6E79370E_4719_5c47_BD5B_8A5050A3BC61" name="xsdDocument" value="filnavn.xsd#NOTES#Description: Valid file name or relative file name of the XSD f&#xA;" modelElement="EAID_6F065E71_1036_4ae4_BA84_DB7D23804F69"/>
+					<tag xmi:id="EAID_BCD3CBEE_5D59_745d_8D3B_1CCF62C790A9" name="xsdEncodingRule" value="sosi#NOTES#Values: sosi,iso19136_2007,iso19136_2007_ShapeChange_1.0_Extensions,iso19136_2007_INSPIRE_Extensions,iso19139_2007,gml33,citygml-ade,metadata-profile,gsip&#xA;Default: sosi&#xA;Description: XML Schema encoding rule to apply&#xA;" modelElement="EAID_6F065E71_1036_4ae4_BA84_DB7D23804F69"/>
+				</tags>
+				<xrefs value="$XREFPROP=$XID={60FD9FC5-47D6-40d5-81CA-7D067C2FAF12}$XID;$NAM=CustomProperties$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@PROP=@NAME=_makeComposite@ENDNAME;@TYPE=string@ENDTYPE;@VALU=true@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;@PROP=@NAME=_defaultDiagramType@ENDNAME;@TYPE=string@ENDTYPE;@VALU=SOSI::Klassediagram@ENDVALU;@PRMT=@ENDPRMT;@ENDPROP;$DES;$CLT={6F065E71-1036-4ae4-BA84-DB7D23804F69}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;$XREFPROP=$XID={D1ED972F-C4E2-432f-A88A-77E70997AC43}$XID;$NAM=Stereotypes$NAM;$TYP=element property$TYP;$VIS=Public$VIS;$PAR=0$PAR;$DES=@STEREO;Name=applicationSchema;GUID={0CD8BC89-919F-42e8-A7AB-96CDACA0AB8E};FQName=SOSI::applicationSchema;@ENDSTEREO;$DES;$CLT={6F065E71-1036-4ae4-BA84-DB7D23804F69}$CLT;$SUP=&lt;none&gt;$SUP;$ENDXREF;"/>
+				<extendedProperties tagged="0" package_name="SOSI"/>
+				<packageproperties version="1.0"/>
+				<paths/>
+				<times created="2013-04-02 13:53:24" modified="2013-04-02 13:53:24"/>
+				<flags iscontrolled="FALSE" isprotected="FALSE" usedtd="FALSE" logxml="FALSE"/>
+			</element>
+			<element xmi:idref="EAID_CAF8ABCB_0CBC_48e1_9A3E_576CDFE9C096" xmi:type="uml:Note" scope="public">
+				<model package="EAPK_6F065E71_1036_4ae4_BA84_DB7D23804F69" tpos="0" ea_localid="-611159786" ea_eleType="element"/>
+				<properties documentation="Legg inn modell elementene her. Evt del opp med Leaf pakker.&#xA;&#xA;Bruk SOSI &quot;Toolbox&quot; for å legge inn elementer med tilhørende tagged values og stereotyper.&#xA;&#xA;For å generere GML skjema av en produktspesifikasjon så kan en velge &quot;applicationSchema&quot; pakken og velge &quot;Extensions -&amp;gt; ShapeChange -&amp;gt; Transform...&#xA;&#xA;For å generere SOSI formatet av en produktspesifikasjon så kan en velge &quot;applicationSchema&quot; pakken og velge &quot;Extensions -&amp;gt; SOSI format realisering -&amp;gt; Lag SOSI format realisering eller Lag defenisjonsfiler for SOSI kontroll &#xA;&#xA;Se veiledning &lt;a href=&quot;$inet://http://www.kartverket.no/Standarder/SOSI/Retningslinjer-og-veiledere-SOSI/&quot;&gt;&lt;font color=&quot;#0000ff&quot;&gt;&lt;u&gt;http://www.kartverket.no/Standarder/SOSI/Retningslinjer-og-veiledere-SOSI/&lt;/u&gt;&lt;/font&gt;&lt;/a&gt; " isSpecification="false" sType="Note" nType="0" scope="public"/>
+				<project author="tor" version="1.0" phase="1.0" created="2013-04-02 13:54:29" modified="2013-08-13 18:28:23" complexity="1" status="Proposed"/>
+				<code gentype="SOSI"/>
+				<style appearance="BackColor=-1;BorderColor=-1;BorderWidth=-1;FontColor=-1;VSwimLanes=1;HSwimLanes=1;BorderStyle=0;"/>
+				<modelDocument/>
+				<tags/>
+				<xrefs/>
+				<extendedProperties tagged="0" package_name="Produktspesifikasjon"/>
+			</element>
+		</elements>
+		<connectors/>
+		<primitivetypes>
+			<packagedElement xmi:type="uml:Package" xmi:id="EAPrimitiveTypesPackage" name="EA_PrimitiveTypes_Package" visibility="public"/>
+		</primitivetypes>
+		<profiles>
+			<uml:Profile xmi:version="2.1" xmlns:uml="http://schema.omg.org/spec/UML/2.1/" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmi:id="D0C37C6B-E" nsPrefix="SOSI" name="SOSI" metamodelReference="mmref01">
+				<ownedComment xmi:type="uml:Comment" xmi:id="comment01" annotatedElement="D0C37C6B-E">
+					<body>SOSI Version:1.0</body>
+				</ownedComment>
+				<packageImport xmi:id="mmref01">
+					<importedPackage href="http://schema.omg.org/spec/UML/2.1/"/>
+				</packageImport>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="featureType" name="featureType">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="featureType-base_Class" name="base_Class" association="Class_featureType">
+						<type href="http://schema.omg.org/spec/UML/2.1/Class"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="featureType-isCollection" name="isCollection">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="featureType-noPropertyType" name="noPropertyType">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="featureType-byValuePropertyType" name="byValuePropertyType">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Class_featureType" name="A_Class_featureType" memberEnd="extension_featureType featureType-base_Class">
+					<ownedEnd xmi:id="extension_featureType" name="extension_featureType" type="featureType" isComposite="true" lower="0" upper="1" memberEnd="extension_featureType featureType-base_Class"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="sosiPrimærnøkkel" name="sosiPrimærnøkkel">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiPrimærnøkkel-base_Attribute" name="base_Attribute" association="Attribute_sosiPrimærnøkkel">
+						<type href="http://schema.omg.org/spec/UML/2.1/Attribute"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiPrimærnøkkel-SOSI_lengde" name="SOSI_lengde">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiPrimærnøkkel-SOSI_navn" name="SOSI_navn">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiPrimærnøkkel-SOSI_primærnøkkel" name="SOSI_primærnøkkel">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Attribute_sosiPrimærnøkkel" name="A_Attribute_sosiPrimærnøkkel" memberEnd="extension_sosiPrimærnøkkel sosiPrimærnøkkel-base_Attribute">
+					<ownedEnd xmi:id="extension_sosiPrimærnøkkel" name="extension_sosiPrimærnøkkel" type="sosiPrimærnøkkel" isComposite="true" lower="0" upper="1" memberEnd="extension_sosiPrimærnøkkel sosiPrimærnøkkel-base_Attribute"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="leaf" name="leaf">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="leaf-base_Package" name="base_Package" association="Package_leaf">
+						<type href="http://schema.omg.org/spec/UML/2.1/Package"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="leaf-xsdDocument" name="xsdDocument">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Package_leaf" name="A_Package_leaf" memberEnd="extension_leaf leaf-base_Package">
+					<ownedEnd xmi:id="extension_leaf" name="extension_leaf" type="leaf" isComposite="true" lower="0" upper="1" memberEnd="extension_leaf leaf-base_Package"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="sosienumeration" name="sosienumeration">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosienumeration-base_Enumeration" name="base_Enumeration" association="Enumeration_sosienumeration">
+						<type href="http://schema.omg.org/spec/UML/2.1/Enumeration"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Enumeration_sosienumeration" name="A_Enumeration_sosienumeration" memberEnd="extension_sosienumeration sosienumeration-base_Enumeration">
+					<ownedEnd xmi:id="extension_sosienumeration" name="extension_sosienumeration" type="sosienumeration" isComposite="true" lower="0" upper="1" memberEnd="extension_sosienumeration sosienumeration-base_Enumeration"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="sosiPrimærnøklerAssosiasjon" name="sosiPrimærnøklerAssosiasjon">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiPrimærnøklerAssosiasjon-base_Association" name="base_Association" association="Association_sosiPrimærnøklerAssosiasjon">
+						<type href="http://schema.omg.org/spec/UML/2.1/Association"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiPrimærnøklerAssosiasjon-SOSI_assosiasjon" name="SOSI_assosiasjon">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Association_sosiPrimærnøklerAssosiasjon" name="A_Association_sosiPrimærnøklerAssosiasjon" memberEnd="extension_sosiPrimærnøklerAssosiasjon sosiPrimærnøklerAssosiasjon-base_Association">
+					<ownedEnd xmi:id="extension_sosiPrimærnøklerAssosiasjon" name="extension_sosiPrimærnøklerAssosiasjon" type="sosiPrimærnøklerAssosiasjon" isComposite="true" lower="0" upper="1" memberEnd="extension_sosiPrimærnøklerAssosiasjon sosiPrimærnøklerAssosiasjon-base_Association"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="sosiFremmednøklerAssosiasjon" name="sosiFremmednøklerAssosiasjon">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiFremmednøklerAssosiasjon-base_Association" name="base_Association" association="Association_sosiFremmednøklerAssosiasjon">
+						<type href="http://schema.omg.org/spec/UML/2.1/Association"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiFremmednøklerAssosiasjon-SOSI_assosiasjon" name="SOSI_assosiasjon">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Association_sosiFremmednøklerAssosiasjon" name="A_Association_sosiFremmednøklerAssosiasjon" memberEnd="extension_sosiFremmednøklerAssosiasjon sosiFremmednøklerAssosiasjon-base_Association">
+					<ownedEnd xmi:id="extension_sosiFremmednøklerAssosiasjon" name="extension_sosiFremmednøklerAssosiasjon" type="sosiFremmednøklerAssosiasjon" isComposite="true" lower="0" upper="1" memberEnd="extension_sosiFremmednøklerAssosiasjon sosiFremmednøklerAssosiasjon-base_Association"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="sosiRefAssosiasjon" name="sosiRefAssosiasjon">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiRefAssosiasjon-base_Association" name="base_Association" association="Association_sosiRefAssosiasjon">
+						<type href="http://schema.omg.org/spec/UML/2.1/Association"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiRefAssosiasjon-SOSI_assosiasjon" name="SOSI_assosiasjon">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Association_sosiRefAssosiasjon" name="A_Association_sosiRefAssosiasjon" memberEnd="extension_sosiRefAssosiasjon sosiRefAssosiasjon-base_Association">
+					<ownedEnd xmi:id="extension_sosiRefAssosiasjon" name="extension_sosiRefAssosiasjon" type="sosiRefAssosiasjon" isComposite="true" lower="0" upper="1" memberEnd="extension_sosiRefAssosiasjon sosiRefAssosiasjon-base_Association"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="type" name="type">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="type-base_Class" name="base_Class" association="Class_type">
+						<type href="http://schema.omg.org/spec/UML/2.1/Class"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="type-isCollection" name="isCollection">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="type-xmlSchemaType" name="xmlSchemaType">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="type-noPropertyType" name="noPropertyType">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="type-byValuePropertyType" name="byValuePropertyType">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Class_type" name="A_Class_type" memberEnd="extension_type type-base_Class">
+					<ownedEnd xmi:id="extension_type" name="extension_type" type="type" isComposite="true" lower="0" upper="1" memberEnd="extension_type type-base_Class"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="StringAttribute" name="StringAttribute">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="StringAttribute-base_Attribute" name="base_Attribute" association="Attribute_StringAttribute">
+						<type href="http://schema.omg.org/spec/UML/2.1/Attribute"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="StringAttribute-SOSI_lengde" name="SOSI_lengde">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="StringAttribute-length" name="length">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="StringAttribute-SOSI_navn" name="SOSI_navn">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Attribute_StringAttribute" name="A_Attribute_StringAttribute" memberEnd="extension_StringAttribute StringAttribute-base_Attribute">
+					<ownedEnd xmi:id="extension_StringAttribute" name="extension_StringAttribute" type="StringAttribute" isComposite="true" lower="0" upper="1" memberEnd="extension_StringAttribute StringAttribute-base_Attribute"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="KodelisteAttribute" name="KodelisteAttribute">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="KodelisteAttribute-base_Attribute" name="base_Attribute" association="Attribute_KodelisteAttribute">
+						<type href="http://schema.omg.org/spec/UML/2.1/Attribute"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="KodelisteAttribute-SOSI_lengde" name="SOSI_lengde">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="KodelisteAttribute-defaultCodeSpace" name="defaultCodeSpace">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="KodelisteAttribute-SOSI_navn" name="SOSI_navn">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="KodelisteAttribute-kodelister" name="kodelister">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Attribute_KodelisteAttribute" name="A_Attribute_KodelisteAttribute" memberEnd="extension_KodelisteAttribute KodelisteAttribute-base_Attribute">
+					<ownedEnd xmi:id="extension_KodelisteAttribute" name="extension_KodelisteAttribute" type="KodelisteAttribute" isComposite="true" lower="0" upper="1" memberEnd="extension_KodelisteAttribute KodelisteAttribute-base_Attribute"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="import" name="import">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="import-base_PackageImport" name="base_PackageImport" association="PackageImport_import">
+						<type href="http://schema.omg.org/spec/UML/2.1/PackageImport"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="PackageImport_import" name="A_PackageImport_import" memberEnd="extension_import import-base_PackageImport">
+					<ownedEnd xmi:id="extension_import" name="extension_import" type="import" isComposite="true" lower="0" upper="1" memberEnd="extension_import import-base_PackageImport"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="applicationSchema" name="applicationSchema">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="applicationSchema-base_Package" name="base_Package" association="Package_applicationSchema">
+						<type href="http://schema.omg.org/spec/UML/2.1/Package"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="applicationSchema-SOSI_versjon" name="SOSI_versjon">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="applicationSchema-version" name="version">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="applicationSchema-SOSI_langnavn" name="SOSI_langnavn">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="applicationSchema-SOSI_produsent" name="SOSI_produsent">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="applicationSchema-xsdEncodingRule" name="xsdEncodingRule">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="applicationSchema-xmlns" name="xmlns">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="applicationSchema-SOSI_spesifikasjonstype" name="SOSI_spesifikasjonstype">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="applicationSchema-SOSI_organisasjon" name="SOSI_organisasjon">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="applicationSchema-xsdDocument" name="xsdDocument">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="applicationSchema-SOSI_kortnavn" name="SOSI_kortnavn">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="applicationSchema-targetNamespace" name="targetNamespace">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="applicationSchema-SOSI_produktgruppe" name="SOSI_produktgruppe">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Package_applicationSchema" name="A_Package_applicationSchema" memberEnd="extension_applicationSchema applicationSchema-base_Package">
+					<ownedEnd xmi:id="extension_applicationSchema" name="extension_applicationSchema" type="applicationSchema" isComposite="true" lower="0" upper="1" memberEnd="extension_applicationSchema applicationSchema-base_Package"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="sosiKodelisteverdi" name="sosiKodelisteverdi">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiKodelisteverdi-base_Attribute" name="base_Attribute" association="Attribute_sosiKodelisteverdi">
+						<type href="http://schema.omg.org/spec/UML/2.1/Attribute"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiKodelisteverdi-SOSI_verdi" name="SOSI_verdi">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Attribute_sosiKodelisteverdi" name="A_Attribute_sosiKodelisteverdi" memberEnd="extension_sosiKodelisteverdi sosiKodelisteverdi-base_Attribute">
+					<ownedEnd xmi:id="extension_sosiKodelisteverdi" name="extension_sosiKodelisteverdi" type="sosiKodelisteverdi" isComposite="true" lower="0" upper="1" memberEnd="extension_sosiKodelisteverdi sosiKodelisteverdi-base_Attribute"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="sosiFremmednøkkel" name="sosiFremmednøkkel">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiFremmednøkkel-base_Attribute" name="base_Attribute" association="Attribute_sosiFremmednøkkel">
+						<type href="http://schema.omg.org/spec/UML/2.1/Attribute"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiFremmednøkkel-SOSI_lengde" name="SOSI_lengde">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiFremmednøkkel-SOSI_fremmednøkkel" name="SOSI_fremmednøkkel">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="sosiFremmednøkkel-SOSI_navn" name="SOSI_navn">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Attribute_sosiFremmednøkkel" name="A_Attribute_sosiFremmednøkkel" memberEnd="extension_sosiFremmednøkkel sosiFremmednøkkel-base_Attribute">
+					<ownedEnd xmi:id="extension_sosiFremmednøkkel" name="extension_sosiFremmednøkkel" type="sosiFremmednøkkel" isComposite="true" lower="0" upper="1" memberEnd="extension_sosiFremmednøkkel sosiFremmednøkkel-base_Attribute"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="Attribute" name="Attribute">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="Attribute-base_Attribute" name="base_Attribute" association="Attribute_Attribute">
+						<type href="http://schema.omg.org/spec/UML/2.1/Attribute"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="Attribute-SOSI_lengde" name="SOSI_lengde">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="Attribute-SOSI_navn" name="SOSI_navn">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Attribute_Attribute" name="A_Attribute_Attribute" memberEnd="extension_Attribute Attribute-base_Attribute">
+					<ownedEnd xmi:id="extension_Attribute" name="extension_Attribute" type="Attribute" isComposite="true" lower="0" upper="1" memberEnd="extension_Attribute Attribute-base_Attribute"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="codeList" name="codeList">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="codeList-base_Class" name="base_Class" association="Class_codeList">
+						<type href="http://schema.omg.org/spec/UML/2.1/Class"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="codeList-SOSI_lengde" name="SOSI_lengde">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="codeList-SOSI_datatype" name="SOSI_datatype">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="codeList-defaultCodeSpace" name="defaultCodeSpace">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="codeList-SOSI_navn" name="SOSI_navn">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="codeList-codeList" name="codeList">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="codeList-asDictionary" name="asDictionary">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Class_codeList" name="A_Class_codeList" memberEnd="extension_codeList codeList-base_Class">
+					<ownedEnd xmi:id="extension_codeList" name="extension_codeList" type="codeList" isComposite="true" lower="0" upper="1" memberEnd="extension_codeList codeList-base_Class"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="dataType" name="dataType">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="dataType-base_Class" name="base_Class" association="Class_dataType">
+						<type href="http://schema.omg.org/spec/UML/2.1/Class"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="dataType-isCollection" name="isCollection">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="dataType-SOSI_navn" name="SOSI_navn">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="dataType-noPropertyType" name="noPropertyType">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Class_dataType" name="A_Class_dataType" memberEnd="extension_dataType dataType-base_Class">
+					<ownedEnd xmi:id="extension_dataType" name="extension_dataType" type="dataType" isComposite="true" lower="0" upper="1" memberEnd="extension_dataType dataType-base_Class"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="topo" name="topo">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="topo-base_Aggregation" name="base_Aggregation" association="Aggregation_topo">
+						<type href="http://schema.omg.org/spec/UML/2.1/Aggregation"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Aggregation_topo" name="A_Aggregation_topo" memberEnd="extension_topo topo-base_Aggregation">
+					<ownedEnd xmi:id="extension_topo" name="extension_topo" type="topo" isComposite="true" lower="0" upper="1" memberEnd="extension_topo topo-base_Aggregation"/>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Stereotype" xmi:id="union" name="union">
+					<ownedAttribute xmi:type="uml:Property" xmi:id="union-base_Class" name="base_Class" association="Class_union">
+						<type href="http://schema.omg.org/spec/UML/2.1/Class"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="union-isCollection" name="isCollection">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+					<ownedAttribute xmi:type="uml:Property" xmi:id="union-noPropertyType" name="noPropertyType">
+						<type href="http://schema.omg.org/spec/UML/2.1/String"/>
+					</ownedAttribute>
+				</packagedElement>
+				<packagedElement xmi:type="uml:Extension" xmi:id="Class_union" name="A_Class_union" memberEnd="extension_union union-base_Class">
+					<ownedEnd xmi:id="extension_union" name="extension_union" type="union" isComposite="true" lower="0" upper="1" memberEnd="extension_union union-base_Class"/>
+				</packagedElement>
+			</uml:Profile>
+		</profiles>
+		<diagrams>
+			<diagram xmi:id="EAID_369A9C84_A1C1_4613_8663_F18108D192F6">
+				<model package="EAPK_6F065E71_1036_4ae4_BA84_DB7D23804F69" localID="235231797" owner="EAPK_6F065E71_1036_4ae4_BA84_DB7D23804F69"/>
+				<properties name="Produktspesifikasjon" type="Logical"/>
+				<project author="tor" version="1.0" created="2013-04-02 13:53:25" modified="2013-08-13 18:27:46"/>
+				<style1 value="ShowPrivate=1;ShowProtected=1;ShowPublic=1;HideRelationships=0;Locked=0;Border=1;HighlightForeign=1;PackageContents=1;SequenceNotes=0;ScalePrintImage=0;PPgs.cx=1;PPgs.cy=1;DocSize.cx=799;DocSize.cy=1138;ShowDetails=0;Orientation=P;Zoom=100;ShowTags=0;OpParams=1;VisibleAttributeDetail=0;ShowOpRetType=1;ShowIcons=1;CollabNums=1;HideProps=0;ShowReqs=0;ShowCons=1;PaperSize=9;HideParents=0;UseAlias=0;HideAtts=0;HideOps=0;HideStereo=1;HideElemStereo=0;ShowTests=0;ShowMaint=0;ConnectorNotation=UML 2.1;ExplicitNavigability=0;AdvancedElementProps=1;AdvancedFeatureProps=1;AdvancedConnectorProps=1;ShowNotes=0;SuppressBrackets=0;SuppConnectorLabels=0;PrintPageHeadFoot=0;ShowAsList=0;"/>
+				<style2 value="ExcludeRTF=0;DocAll=0;HideQuals=0;AttPkg=1;ShowTests=0;ShowMaint=0;SuppressFOC=1;MatrixActive=0;SwimlanesActive=1;MatrixLineWidth=1;MatrixLocked=0;TConnectorNotation=UML 2.1;TExplicitNavigability=0;AdvancedElementProps=1;AdvancedFeatureProps=1;AdvancedConnectorProps=1;ProfileData=;MDGDgm=SOSI::Klassediagram;DefaultLang=SOSI;STBLDgm=;ShowNotes=0;VisibleAttributeDetail=0;ShowOpRetType=1;SuppressBrackets=0;SuppConnectorLabels=0;PrintPageHeadFoot=0;ShowAsList=0;SuppressedCompartments=;SaveTag=DF0631D9;"/>
+				<swimlanes value="locked=false;orientation=0;width=0;inbar=false;names=false;color=0;bold=false;fcol=0;;cls=0;"/>
+				<matrixitems value="locked=false;matrixactive=false;swimlanesactive=true;width=1;"/>
+				<extendedProperties/>
+				<elements>
+					<element geometry="Left=44;Top=26;Right=762;Bottom=165;" subject="EAID_CAF8ABCB_0CBC_48e1_9A3E_576CDFE9C096" seqno="1" style="DUID=9C963415;"/>
+				</elements>
+			</diagram>
+		</diagrams>
+	</xmi:Extension>
+</xmi:XMI>
