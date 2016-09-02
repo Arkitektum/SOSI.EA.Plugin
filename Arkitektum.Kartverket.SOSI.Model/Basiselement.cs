@@ -19,5 +19,10 @@ namespace Arkitektum.Kartverket.SOSI.Model
         {
             return this.SOSI_Navn == ((Basiselement)obj).SOSI_Navn;
         }
+
+        public void LeggTilTillatteVerdier(List<string> verdier)
+        {
+            TillatteVerdier.AddRange(verdier);
+        }
     }
 }

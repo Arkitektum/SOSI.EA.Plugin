@@ -90,9 +90,9 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin
 
                     if (elm.Stereotype.ToLower() == "featuretype" || elm.Stereotype.ToLower() == "type")
                     { 
-                        Sosimodell modell = new Sosimodell();
-                        var gen = new SOSIKontrollGenerator();
-                        txtSosi.Text = gen.LagSosiObjekt(modell.LagObjekttype(Repository, elm, "..", true,null),true);
+                        Sosimodell modell = new Sosimodell(Repository);
+                        var gen = new SosiKontrollGenerator();
+                        txtSosi.Text = gen.LagSosiObjekt(modell.LagObjekttype(elm, "..", true,null),true);
                     }
 
 
@@ -107,11 +107,11 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin
 
                     if (elm.Stereotype.ToLower() == "featuretype" || elm.Stereotype.ToLower() == "type")
                     {
-                        Sosimodell modell = new Sosimodell();
-                        Objekttype o = modell.LagObjekttype(Repository, elm, "..", false,null);
+                        Sosimodell modell = new Sosimodell(Repository);
+                        Objekttype o = modell.LagObjekttype(elm, "..", false,null);
                         List<Basiselement> listBasis = new List<Basiselement>();
                         List<Gruppeelement> listGruppe = new List<Gruppeelement>();
-                        var gen = new SOSIKontrollGenerator();
+                        var gen = new SosiKontrollGenerator();
 
                         txtSosi.Text = gen.LagSosiSyntaks(o, listBasis, listGruppe);
                         txtSosi.Text = txtSosi.Text + gen.LagSosiSyntaksGrupper(listGruppe);

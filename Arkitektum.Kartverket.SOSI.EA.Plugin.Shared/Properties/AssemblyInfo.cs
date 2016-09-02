@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Arkitektum.Kartverket.SOSI.Model")]
+[assembly: AssemblyTitle("Arkitektum.Kartverket.SOSI.EA.Plugin.Shared")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Arkitektum AS")]
-[assembly: AssemblyProduct("Arkitektum.Kartverket.SOSI.Model")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Arkitektum.Kartverket.SOSI.EA.Plugin.Shared")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("39ae8eab-6982-468d-86d5-bdd9c817877c")]
+[assembly: Guid("51ad58bd-9de7-4138-94bb-c58abb811703")]
 
 // Version information for an assembly consists of the following four values:
 //

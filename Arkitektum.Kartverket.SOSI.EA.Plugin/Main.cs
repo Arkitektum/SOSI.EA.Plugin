@@ -5,23 +5,67 @@ using System.Text;
 using EA;
 using System.Reflection;
 using System.IO;
+using System.Windows.Forms;
 using System.Xml.Linq;
+using arkitektum.gistools.generators.Validator;
 using Arkitektum.Kartverket.SOSI.Model;
 using Arkitektum.Kartverket.SOSI.EA.Plugin.Services;
 
 namespace Arkitektum.Kartverket.SOSI.EA.Plugin
 {
     public class Main{
-    private bool m_ShowFullMenus = false;
-    private SosiNavigator eaSosiControl;
+        private bool m_ShowFullMenus = false;
+        private SosiNavigator eaSosiControl;
+        private Repository _repository;
+        List<ValidationResult> _validationResults = new List<ValidationResult>();
 
-        public String EA_Connect(Repository Repository)
+        public String EA_Connect(Repository repository)
         {
-            this.eaSosiControl = Repository.AddWindow("Sosi", "Arkitektum.Kartverket.SOSI.EA.Plugin.SosiNavigator") as SosiNavigator;
+            _repository = repository;
+            this.eaSosiControl = repository.AddWindow("Sosi", "Arkitektum.Kartverket.SOSI.EA.Plugin.SosiNavigator") as SosiNavigator;
             return "a string";
         }
-        
-        
+
+        public Boolean EA_OnPostNewAttribute(Repository Repository, EventProperties Info)
+        {
+            Boolean oppdatert = false;
+            if (Info != null)
+            {
+                global::EA.Attribute att = Repository.GetAttributeByID(Info.Get(0).Value);
+                if (att.Stereotype.ToLower() == "attribute")
+                {
+                    att.Stereotype = "";
+                    att.StereotypeEx = "";
+                    att.Update();
+                    SaveTaggedValueOnAttribute(att, "SOSI_navn", att.Name.ToUpper());
+                    SaveTaggedValueOnAttribute(att, "SOSI_lengde", "");
+                    SaveTaggedValueOnAttribute(att, "sequenceNumber", "");
+                    SaveTaggedValueOnAttribute(att, "isMetadata", "false");
+                }
+                if (att.Stereotype.ToLower() == "kodelisteattribute")
+                {
+                    att.Stereotype = "";
+                    att.StereotypeEx = "";
+                    att.Update();
+                    SaveTaggedValueOnAttribute(att, "SOSI_navn", att.Name.ToUpper());
+                    SaveTaggedValueOnAttribute(att, "SOSI_lengde", "");
+                    SaveTaggedValueOnAttribute(att, "sequenceNumber", "");
+                    SaveTaggedValueOnAttribute(att, "isMetadata", "false");
+                    SaveTaggedValueOnAttribute(att, "defaultCodeSpace", "");
+
+                }
+            }
+
+            return oppdatert;
+        }
+
+        private static void SaveTaggedValueOnAttribute(global::EA.Attribute att, string taggedValueName, string taggedValue)
+        {
+                var tv1 = att.TaggedValues.AddNew(taggedValueName, "");
+                tv1.Value = taggedValue;
+                tv1.Update();
+        }
+
         public Boolean EA_OnPostNewConnector(Repository Repository, EventProperties Info) {
             Boolean oppdatert = false;
 
@@ -132,6 +176,8 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin
 
         private void GenererObjektkatalog(Repository Repository)
         {
+            if (!ModelIsValid() && (UserAbortsDueToInvalidModel() || UserAbortsDueToCircularReference())) return;
+
             try
             {
 
@@ -177,9 +223,9 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin
                         Directory.CreateDirectory(katalog);
                     }
 
-                    Sosimodell modell = new Sosimodell();
-                    List<Objekttype> otList = modell.ByggObjektstruktur(Repository);
-                    List<SosiKodeliste> kodeList = modell.ByggSosiKodelister(Repository);
+                    Sosimodell modell = new Sosimodell(Repository);
+                    List<Objekttype> otList = modell.ByggObjektstruktur();
+                    List<SosiKodeliste> kodeList = modell.ByggSosiKodelister();
                    
                     XDocument doc = new ObjektKatalogGenerator().LagObjektKatalog(versjon, organisasjon, person, navn, beskrivelse, otList, isFag, kodeList);
                     doc.Save(xmlfil);
@@ -192,16 +238,18 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin
                     
                     
                 }
-                else System.Windows.Forms.MessageBox.Show("Vennligst velg en pakke med stereotype applicationSchema.");
+                else MessageBox.Show("Vennligst velg en pakke med stereotype applicationSchema.");
             }
             catch (Exception e)
             {
-                System.Windows.Forms.MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message);
             }
         }
 
         private void GenererWordSyntaksSpesifikasjon(Repository Repository)
         {
+            if (!ModelIsValid() && (UserAbortsDueToInvalidModel() || UserAbortsDueToCircularReference())) return;
+
             try
             {
                 Package valgtPakke = Repository.GetTreeSelectedPackage();
@@ -220,42 +268,42 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin
 
                     }
 
-                    Sosimodell modell = new Sosimodell();
-                    List<Objekttype> otList = modell.ByggObjektstruktur(Repository);
-                    List<SosiKodeliste> kodeList = modell.ByggSosiKodelister(Repository);
+                    Sosimodell modell = new Sosimodell(Repository);
+                    List<Objekttype> otList = modell.ByggObjektstruktur();
+                    List<SosiKodeliste> kodeList = modell.ByggSosiKodelister();
                     string eadirectory = Path.GetDirectoryName(Repository.ConnectionString);
                     
                     var gen = new WordSOSIRealiseringGenerator();
                     gen.LagWordRapportSosiSyntaks(otList, isFag, kodeList, valgtPakke.Name);
 
                 }
-                else System.Windows.Forms.MessageBox.Show("Vennligst velg en pakke med stereotype applicationSchema.");
+                else MessageBox.Show("Vennligst velg en pakke med stereotype applicationSchema.");
             }
             catch (Exception e)
             {
-                System.Windows.Forms.MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message);
             }
         }
 
         private void GenererDefinisjonsfiler(Repository Repository)
         {
+            if (!ModelIsValid() && (UserAbortsDueToInvalidModel() || UserAbortsDueToCircularReference())) return;
+
             try
             {
                 Package valgtPakke = Repository.GetTreeSelectedPackage();
                 if (valgtPakke.Element.Stereotype.ToLower() == "applicationschema" || valgtPakke.Element.Stereotype.ToLower() == "underarbeid")
                 {
-                    Sosimodell modell = new Sosimodell();
-                    List<Objekttype> otList = modell.ByggObjektstruktur(Repository);
-                    var gen = new SOSIKontrollGenerator();
+                    Sosimodell modell = new Sosimodell(Repository);
+                    List<Objekttype> otList = modell.ByggObjektstruktur();
+                    var gen = new SosiKontrollGenerator();
                     gen.GenererDefFiler(otList, Repository);
-
-                    System.Windows.Forms.MessageBox.Show("Filer er generert til katalogen def hvor modellfilen(.eap) ligger.");
                 }
-                else System.Windows.Forms.MessageBox.Show("Vennligst velg en pakke med stereotype applicationSchema.");
+                else MessageBox.Show("Vennligst velg en pakke med stereotype applicationSchema.");
             }
             catch (Exception e)
             {
-                System.Windows.Forms.MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message);
             }
             finally
             {
@@ -286,7 +334,7 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin
                 }
                 catch (Exception e)
                 {
-                    System.Windows.Forms.MessageBox.Show("Error Initializing SOSI Technology");
+                    MessageBox.Show("Error Initializing SOSI Technology");
                 }
 
             }
@@ -309,13 +357,56 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin
                 }
                 catch (Exception e)
                 {
-                    System.Windows.Forms.MessageBox.Show("Error getting template");
+                    MessageBox.Show("Error getting template");
                 }
 
             }
             return sTemplate;
 
         }
+
+        private bool ModelIsValid()
+        {
+            var umlValidator = new UMLValidator(_repository, new ValidatorSettings(true, true));
+            _validationResults = umlValidator.RunValidation(_repository.GetTreeSelectedPackage());
+            return umlValidator.IsValid(_validationResults);
+        }
+
+        private bool UserAbortsDueToCircularReference()
+        {
+            bool hasCircularReference = _validationResults.Any(v => v.ErrorMessage.StartsWith("Sirkelreferanse"));
+            if (hasCircularReference)
+            {
+                string caption = "Operasjonen ble avbrutt";
+                string message =
+                    "Modellen inneholder sirkelreferanser og vi kan ikke sikre kjøring uten fare for at programmet henger. Alt arbeid bør være lagret før du evt. fortsetter. Fortsett kjøring på eget ansvar?";
+                DialogResult generateAnyway = MessageBox.Show(message, caption, MessageBoxButtons.YesNo);
+                bool userHasAborted = generateAnyway == DialogResult.No;
+                if (userHasAborted)
+                {
+                    _repository.WriteOutput("System", "Operasjonen ble avbrutt av brukeren. Modellen inneholder sirkelreferanser.", 0);
+                }
+
+                return userHasAborted;
+            }
+            return false;
+        }
+
+        private bool UserAbortsDueToInvalidModel()
+        {
+            string caption = "Ugyldig SOSI-modell";
+            string message = "Modellen er ikke gyldig ihht. SOSI-standard. Vil du fortsette?";
+
+            DialogResult generateAnyway = MessageBox.Show(message, caption, MessageBoxButtons.YesNo);
+
+            bool userHasAborted = generateAnyway == DialogResult.No;
+            if (userHasAborted)
+            {
+                _repository.WriteOutput("System", "Operasjonen ble avbrutt av brukeren. Modellen er ikke en gyldig SOSI-modell.", 0);
+            }
+            return userHasAborted;
+        }
+
 
     }
 }

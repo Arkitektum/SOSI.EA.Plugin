@@ -1,16 +1,16 @@
 ﻿using EA;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text;
 using Arkitektum.Kartverket.SOSI.Model;
 
 namespace Arkitektum.Kartverket.SOSI.EA.Plugin.Services
 {
-    public class SOSIKontrollGenerator
+    public class SosiKontrollGenerator
     {
-        public void GenererDefFiler(List<Objekttype> liste, Repository _rep)
+        public void GenererDefFiler(List<Objekttype> liste, Repository repository)
         {
             string produktgruppe = "";
             string kortnavn = "";
@@ -18,7 +18,7 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin.Services
             string versjonUtenP = "";
             bool fagområde = false;
 
-            Package valgtPakke = _rep.GetTreeSelectedPackage();
+            Package valgtPakke = repository.GetTreeSelectedPackage();
 
             foreach (TaggedValue theTags in valgtPakke.Element.TaggedValues)
             {
@@ -40,17 +40,18 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin.Services
                 }
 
             }
-            if (produktgruppe == "") _rep.WriteOutput("System", "FEIL: Mangler tagged value sosi_produktgruppe på " + valgtPakke.Element.Name, 0);
-            if (kortnavn == "") _rep.WriteOutput("System", "FEIL: Mangler tagged value sosi_kortnavn på " + valgtPakke.Element.Name, 0);
-            if (versjon == "") _rep.WriteOutput("System", "FEIL: Mangler tagged value version på " + valgtPakke.Element.Name, 0);
+            if (produktgruppe == "") repository.WriteOutput("System", "FEIL: Mangler tagged value sosi_produktgruppe på applikasjonsskjemapakke " + valgtPakke.Element.Name, 0);
+            if (kortnavn == "") repository.WriteOutput("System", "FEIL: Mangler tagged value sosi_kortnavn på applikasjonsskjemapakke " + valgtPakke.Element.Name, 0);
+            if (versjon == "") repository.WriteOutput("System", "FEIL: Mangler tagged value version på applikasjonsskjemapakke " + valgtPakke.Element.Name, 0);
 
 
             //Lage kataloger
-            string eadirectory = Path.GetDirectoryName(_rep.ConnectionString);
-            string fullfil = eadirectory + @"\def\" + produktgruppe + @"\kap" + versjonUtenP + @"\" + kortnavn + @"_o." + versjonUtenP;
-            string utvalgfil = eadirectory + @"\def\" + produktgruppe + @"\kap" + versjonUtenP + @"\" + kortnavn + @"_u." + versjonUtenP;
-            string deffil = eadirectory + @"\def\" + produktgruppe + @"\kap" + versjonUtenP + @"\" + kortnavn + @"_d." + versjonUtenP;
-            string defkatalogfil = eadirectory + @"\def\" + produktgruppe + @"\Def_" + kortnavn + "." + versjonUtenP;
+            string eadirectory = Path.GetDirectoryName(repository.ConnectionString);
+            string baseDirectory = eadirectory + @"\def\";
+            string fullfil = baseDirectory + produktgruppe + @"\kap" + versjonUtenP + @"\" + kortnavn + @"_o." + versjonUtenP;
+            string utvalgfil = baseDirectory + produktgruppe + @"\kap" + versjonUtenP + @"\" + kortnavn + @"_u." + versjonUtenP;
+            string deffil = baseDirectory + produktgruppe + @"\kap" + versjonUtenP + @"\" + kortnavn + @"_d." + versjonUtenP;
+            string defkatalogfil = baseDirectory + produktgruppe + @"\Def_" + kortnavn + "." + versjonUtenP;
 
             string katalog = Path.GetDirectoryName(fullfil);
 
@@ -59,7 +60,7 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin.Services
                 Directory.CreateDirectory(katalog);
             }
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(defkatalogfil, false, Encoding.GetEncoding(1252)))
+            using (var file = new StreamWriter(defkatalogfil, false, Encoding.GetEncoding(1252)))
             {
                 file.WriteLine("[SyntaksDefinisjoner]");
                 file.WriteLine(deffil.Replace(eadirectory + @"\def\" + produktgruppe, ""));
@@ -74,7 +75,7 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin.Services
                 file.WriteLine(fullfil.Replace(eadirectory + @"\def\" + produktgruppe, ""));
             }
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(deffil, false, Encoding.GetEncoding(1252)))
+            using (var file = new StreamWriter(deffil, false, Encoding.GetEncoding(1252)))
             {
                 List<Basiselement> listUnikeBasiselementer = new List<Basiselement>();
                 List<Gruppeelement> listUnikeGruppeelementer = new List<Gruppeelement>();
@@ -82,13 +83,13 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin.Services
                 file.WriteLine("! ***** SOSI - Syntaksdefinisjoner **************!");
                 foreach (Objekttype o in liste)
                 {
-                    file.WriteLine(this.LagSosiSyntaks(o, listUnikeBasiselementer, listUnikeGruppeelementer));
+                    LagSosiSyntaks(o, listUnikeBasiselementer, listUnikeGruppeelementer);
                 }
 
-                file.WriteLine(this.LagSosiSyntaksGrupper(listUnikeGruppeelementer));
-                file.WriteLine(this.LagSosiSyntaksBasiselementer(listUnikeBasiselementer));
+                file.WriteLine(LagSosiSyntaksGrupper(listUnikeGruppeelementer));
+                file.WriteLine(LagSosiSyntaksBasiselementer(listUnikeBasiselementer));
 
-
+                /* Remove default types
                 file.WriteLine("");
                 file.WriteLine(".DEF");
                 file.WriteLine("..BEZIER S");
@@ -157,9 +158,15 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin.Services
                 file.WriteLine(".DEF");
                 file.WriteLine("..TRASE S");
 
+                file.WriteLine("");
+                file.WriteLine(".DEF");
+                file.WriteLine("..PERIODE *");
+                file.WriteLine("...TIDSTART DATOTID");
+                file.WriteLine("...TIDSLUTT DATOTID");
+                */
             }
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(fullfil, false, Encoding.GetEncoding(1252)))
+            using (var file = new StreamWriter(fullfil, false, Encoding.GetEncoding(1252)))
             {
 
                 file.WriteLine("! ***************************************************************************!");
@@ -185,7 +192,7 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin.Services
 
             }
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(utvalgfil, false, Encoding.GetEncoding(1252)))
+            using (StreamWriter file = new StreamWriter(utvalgfil, false, Encoding.GetEncoding(1252)))
             {
 
                 file.WriteLine("! ***************************************************************************!");
@@ -213,7 +220,7 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin.Services
 
             }
 
-
+            Process.Start(baseDirectory);
         }
 
 
@@ -297,71 +304,123 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin.Services
 
         public string LagSosiObjekt(Objekttype o, bool isFagområde)
         {
-            string tmp = Environment.NewLine;
+            StringBuilder builder = new StringBuilder(Environment.NewLine);
+            builder.AppendLine(".OBJEKTTYPE");
 
-            tmp = tmp + ".OBJEKTTYPE" + Environment.NewLine;
-            tmp = tmp + "..TYPENAVN " + o.UML_Navn + Environment.NewLine;
-            if (o.Geometrityper.Count > 0) tmp = tmp + "..GEOMETRITYPE " + String.Join(",", o.Geometrityper.ToArray(), 0, o.Geometrityper.Count) + Environment.NewLine;
-            if (o.AvgrensesAv.Count > 0) tmp = tmp + "..AVGRENSES_AV " + String.Join(",", o.AvgrensesAv.ToArray(), 0, o.AvgrensesAv.Count) + Environment.NewLine;
-            if (o.Avgrenser.Count > 0) tmp = tmp + "..AVGRENSER " + String.Join(",", o.Avgrenser.ToArray(), 0, o.Avgrenser.Count) + Environment.NewLine;
-
-            tmp = tmp + "..PRODUKTSPEK " + o.Standard.ToUpper() + Environment.NewLine;
-
-            if (isFagområde) tmp = tmp + "..INKLUDER SOSI_Objekt" + Environment.NewLine;
-
-            foreach (var b1 in o.Egenskaper)
+            if (o.ErFlateavgrensningObjekt())
             {
-                tmp = LagSosiEgenskap(tmp, b1);
+                builder.Append("..INKLUDER Flateavgrensning");
             }
-            tmp = LagSosiArvetObjekt(tmp, o);
+            else if (o.ErKantUtsnittObjekt())
+            {
+                builder.Append("..INKLUDER KantUtsnitt");
+            }
+            else
+            {
+                builder.Append("..TYPENAVN ").AppendLine(o.UML_Navn);
+                if (o.Geometrityper.Count > 0)
+                    builder.Append("..GEOMETRITYPE ").AppendLine(string.Join(",", o.Geometrityper.ToArray(), 0, o.Geometrityper.Count));
+                if (o.AvgrensesAv.Count > 0)
+                    builder.Append("..AVGRENSES_AV ").AppendLine(string.Join(",", o.AvgrensesAv.ToArray(), 0, o.AvgrensesAv.Count));
+                if (o.Avgrenser.Count > 0)
+                    builder.Append("..AVGRENSER ").AppendLine(string.Join(",", o.Avgrenser.ToArray(), 0, o.Avgrenser.Count));
 
+                builder.Append("..PRODUKTSPEK ").AppendLine(o.Standard.ToUpper());
 
-            return tmp;
+                if (isFagområde)
+                    builder.AppendLine("..INKLUDER SOSI_Objekt");
 
+                foreach (var b1 in o.Egenskaper)
+                {
+                    builder.Append(LagSosiEgenskap(b1));
+                }
+                builder.Append(LagSosiArvetObjekt(o));
+            }
+            return builder.ToString();
         }
-        private static string LagSosiArvetObjekt(string tmp, Objekttype o)
+
+       
+
+        private static string LagSosiArvetObjekt(Objekttype o)
         {
+            StringBuilder builder = new StringBuilder();
             if (o.Inkluder != null)
             {
-
                 foreach (var b1 in o.Inkluder.Egenskaper)
                 {
-                    tmp = LagSosiEgenskap(tmp, b1);
+                    builder.Append(LagSosiEgenskap(b1));
                 }
 
-                if (o.Inkluder.Inkluder != null) tmp = LagSosiArvetObjekt(tmp, o.Inkluder);
+                if (o.Inkluder.Inkluder != null)
+                    builder.Append(LagSosiArvetObjekt(o.Inkluder));
             }
-            return tmp;
-
+            return builder.ToString();
         }
 
 
-        private static string LagSosiEgenskap(string tmp, AbstraktEgenskap b1)
+        private static string LagSosiEgenskap(AbstraktEgenskap b1)
         {
+            StringBuilder builder = new StringBuilder();
             if (b1 is Basiselement)
             {
                 Basiselement b = (Basiselement)b1;
                 if (b.TillatteVerdier.Count > 0)
-                    tmp = tmp + "..EGENSKAP \"" + b.UML_Navn + "\" * \"" + b.SOSI_Navn + "\"    " + b.Datatype + "  " + b.Multiplisitet.Replace("[", "").Replace("]", "").Replace("*", "N").Replace(".", " ") + "  " + b.Operator + " (" + String.Join(",", b.TillatteVerdier.ToArray(), 0, b.TillatteVerdier.Count) + ")" + Environment.NewLine;
+                    builder.Append("..EGENSKAP \"")
+                        .Append(b.UML_Navn)
+                        .Append("\" * \"")
+                        .Append(b.SOSI_Navn)
+                        .Append("\"    ")
+                        .Append(b.Datatype)
+                        .Append("  ")
+                        .Append(b.Multiplisitet.Replace("[", "").Replace("]", "").Replace("*", "N").Replace(".", " "))
+                        .Append("  ").Append(b.Operator)
+                        .Append(" (")
+                        .Append(string.Join(",", b.TillatteVerdier.ToArray(), 0, b.TillatteVerdier.Count))
+                        .AppendLine(")");
+                else if (b.Datatype == "REF")
+
+                    builder.Append("..EGENSKAP \"")
+                        .Append(b.UML_Navn)
+                        .Append("\" * \"")
+                        .Append(b.SOSI_Navn)
+                        .Append("\"    ")
+                        .Append("*")
+                        .Append("  ")
+                        .Append(b.Multiplisitet.Replace("[", "").Replace("]", "").Replace("*", "N").Replace(".", " "))
+                        .AppendLine("  >< ()");
                 else
-                    tmp = tmp + "..EGENSKAP \"" + b.UML_Navn + "\" * \"" + b.SOSI_Navn + "\"    " + b.Datatype + "  " + b.Multiplisitet.Replace("[", "").Replace("]", "").Replace("*", "N").Replace(".", " ") + "  >< ()" + Environment.NewLine;
+                    builder.Append("..EGENSKAP \"")
+                        .Append(b.UML_Navn)
+                        .Append("\" * \"")
+                        .Append(b.SOSI_Navn)
+                        .Append("\"    ")
+                        .Append(b.Datatype)
+                        .Append("  ")
+                        .Append(b.Multiplisitet.Replace("[", "").Replace("]", "").Replace("*", "N").Replace(".", " "))
+                        .AppendLine("  >< ()");
 
             }
             else
             {
                 Gruppeelement g = (Gruppeelement)b1;
-                tmp = tmp + "..EGENSKAP \"" + g.UML_Navn + "\" * \"" + g.SOSI_Navn + "\"    *  " + g.Multiplisitet.Replace("[", "").Replace("]", "").Replace("*", "N").Replace(".", " ") + "  >< ()" + Environment.NewLine;
+                builder.Append("..EGENSKAP \"")
+                    .Append(g.UML_Navn)
+                    .Append("\" * \"")
+                    .Append(g.SOSI_Navn)
+                    .Append("\"    *  ")
+                    .Append(g.Multiplisitet.Replace("[", "").Replace("]", "").Replace("*", "N").Replace(".", " "))
+                    .AppendLine("  >< ()");
 
                 foreach (var b2 in g.Egenskaper)
                 {
-                    tmp = LagSosiEgenskap(tmp, b2);
+                    builder.Append(LagSosiEgenskap(b2));
                 }
                 if (g.Inkluder != null)
                 {
-                    tmp = LagSosiEgenskap(tmp, g.Inkluder);
+                    builder.Append(LagSosiEgenskap(g.Inkluder));
                 }
             }
-            return tmp;
+            return builder.ToString();
         }
 
 

@@ -206,6 +206,10 @@
     <Content Include="xmi_fagområde.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Arkitektum.Kartverket.SOSI.EA.Plugin.Shared\Arkitektum.Kartverket.SOSI.EA.Plugin.Shared.csproj">
+      <Project>{51ad58bd-9de7-4138-94bb-c58abb811703}</Project>
+      <Name>Arkitektum.Kartverket.SOSI.EA.Plugin.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Arkitektum.Kartverket.SOSI.Model\Arkitektum.Kartverket.SOSI.Model.csproj">
       <Project>{4cfe4c91-8b4f-49e4-9e05-1f393f69261f}</Project>
       <Name>Arkitektum.Kartverket.SOSI.Model</Name>

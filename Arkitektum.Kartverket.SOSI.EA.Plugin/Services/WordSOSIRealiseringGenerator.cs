@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Windows.Forms;
 using Office = Microsoft.Office.Core;
@@ -146,7 +147,7 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin.Services
                         {
                             oTable.Rows.Add();
                             int rowcounter = oTable.Rows.Count;
-                            oTable.Cell(rowcounter, 1).Range.Text = "Avgrenser: " + String.Join(",", o.Avgrenser.ToArray(), 0, o.Avgrenser.Count);
+                            oTable.Cell(rowcounter, 1).Range.Text = "Avgrenser: " + String.Join(", ", o.Avgrenser.ToArray(), 0, o.Avgrenser.Count);
                             oTable.Cell(rowcounter, 1).Range.Bold = 0;
                             oTable.Cell(rowcounter, 1).Range.Shading.BackgroundPatternColor = Word.WdColor.wdColorAutomatic;
  
@@ -155,7 +156,7 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin.Services
                         {
                             oTable.Rows.Add();
                             int rowcounter = oTable.Rows.Count;
-                            oTable.Cell(rowcounter, 1).Range.Text = "Avgrenses av: " + String.Join(",", o.AvgrensesAv.ToArray(), 0, o.AvgrensesAv.Count);
+                            oTable.Cell(rowcounter, 1).Range.Text = "Avgrenses av: " + String.Join(", ", o.AvgrensesAv.ToArray(), 0, o.AvgrensesAv.Count);
                             oTable.Cell(rowcounter, 1).Range.Bold = 0;
                             oTable.Cell(rowcounter, 1).Range.Shading.BackgroundPatternColor = Word.WdColor.wdColorAutomatic;
                         }
@@ -164,7 +165,15 @@ namespace Arkitektum.Kartverket.SOSI.EA.Plugin.Services
                         {
                             oTable.Rows.Add();
                             int rowcounter = oTable.Rows.Count;
-                            oTable.Cell(rowcounter, 1).Range.Text = b.Navn + ": " + b.Notat;
+
+                            StringBuilder builder = new StringBuilder();
+                            if (b.ErArvet())
+                            {
+                                builder.Append("Fra supertype ").Append(b.OpprinneligFraElementNavn).AppendLine(":");
+                            }
+                            builder.Append(b.Navn).Append(": ").Append(b.Notat);
+                            
+                            oTable.Cell(rowcounter, 1).Range.Text = builder.ToString();
                             oTable.Cell(rowcounter, 1).Range.Bold = 0;
                             oTable.Cell(rowcounter, 1).Range.Shading.BackgroundPatternColor = Word.WdColor.wdColorAutomatic;
                         }
